@@ -1,0 +1,214 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#050B16}
+body{font-family:'Inter Display','Inter',sans-serif;color:#fff;position:relative}
+.abs{position:absolute}
+.sc{position:absolute;inset:0;overflow:hidden;display:none}
+#cap{left:40px;right:40px;top:1380px;text-align:center;font-weight:900;font-size:104px;line-height:1.02;letter-spacing:-2px;color:#fff;text-shadow:__SH__,0 14px 34px rgba(0,0,0,.7);z-index:20}
+#cap .y{color:#3FE6F0}
+#vig{position:absolute;inset:0;background:radial-gradient(ellipse 75% 60% at 50% 45%,transparent 45%,rgba(0,0,0,.6) 100%);pointer-events:none;z-index:15}
+#grain{position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:.06;mix-blend-mode:screen;image-rendering:pixelated;z-index:16}
+.big{position:absolute;left:0;right:0;text-align:center;font-weight:900;letter-spacing:-6px;line-height:1;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.6)}
+.card{position:absolute;left:90px;right:90px;border-radius:44px;background:#0E2236;border:2px solid #1F4060;box-shadow:0 40px 90px rgba(0,0,0,.6);padding:40px 44px}
+.chip{display:inline-flex;align-items:center;padding:22px 38px;border-radius:999px;background:#0E2236;border:3px solid #2A5A80;font-size:44px;font-weight:800;color:#CFE9F5}
+.gtext{background:linear-gradient(120deg,#12D8D0 0%,#0BB2E0 45%,#3F8CFF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad{background:linear-gradient(120deg,#12D8D0 0%,#0BB2E0 45%,#1670E0 100%)}
+</style></head><body>
+<div id="stage" class="abs" style="inset:0">
+
+<!-- A: night sea + lighthouse -->
+<div id="sA" class="sc" style="background:linear-gradient(#040A18,#0A1A33 55%,#0E2742)">
+  <canvas id="starsA" class="abs" width="1080" height="1920"></canvas>
+  <div id="beamA" class="abs" style="left:-1000px;top:-650px;width:3080px;height:3080px;transform-origin:50% 50%;border-radius:50%;z-index:2"></div>
+  <svg class="abs" style="left:0;top:0;z-index:3" width="1080" height="1920">__TOWER_A__</svg>
+  <canvas id="seaA" class="abs" width="1080" height="1920" style="z-index:4"></canvas>
+</div>
+
+<!-- B: lantern room, keeper + flame -->
+<div id="sB" class="sc" style="background:radial-gradient(ellipse at 50% 42%,#14304D,#050B16 72%)">
+  <div id="glowB" class="abs" style="left:140px;top:300px;width:800px;height:800px;border-radius:50%;z-index:1"></div>
+  <svg class="abs" style="left:0;top:0;z-index:2" width="1080" height="1920">__LANTERN__</svg>
+  <div id="flameB" class="abs" style="left:490px;top:560px;width:100px;height:190px;z-index:3;transform-origin:50% 100%;border-radius:50% 50% 45% 45%/62% 62% 38% 38%;background:radial-gradient(ellipse at 50% 70%,#FFFFFF 0%,#FFF2B0 25%,#FFC24A 55%,rgba(255,120,30,.0) 75%)"></div>
+  <svg class="abs" id="keeperB" style="left:640px;top:520px;z-index:4" width="300" height="620" viewBox="0 0 300 620">__KEEPER__</svg>
+  <canvas id="windB" class="abs" width="1080" height="1920" style="z-index:5"></canvas>
+</div>
+
+<!-- C: tower cross-section, climbing, clockwork -->
+<div id="sC" class="sc" style="background:linear-gradient(#071226,#0C2038)">
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920">__XSECT__</svg>
+  <div id="dotC" class="abs" style="width:44px;height:44px;border-radius:50%;background:#FFE7A0;box-shadow:0 0 30px 10px rgba(255,220,120,.6);z-index:4"></div>
+  <div id="clockC" class="abs" style="left:700px;top:260px;width:280px;height:280px;border-radius:50%;background:#0E2236;border:8px solid #2A5A80;z-index:5;opacity:0">
+    <div id="hrC" class="abs" style="left:132px;top:60px;width:16px;height:84px;border-radius:8px;background:#CFE9F5;transform-origin:50% 100%"></div>
+    <div id="mnC" class="abs" style="left:134px;top:30px;width:12px;height:114px;border-radius:6px;background:#3FE6F0;transform-origin:50% 100%"></div>
+    <div class="abs" style="left:122px;top:122px;width:36px;height:36px;border-radius:50%;background:#CFE9F5"></div>
+    <div id="tC" class="abs" style="left:-40px;right:-40px;top:300px;text-align:center;font-size:52px;font-weight:900">10 PM</div>
+  </div>
+  <svg id="gearC" class="abs" style="left:640px;top:760px;z-index:5;opacity:0" width="360" height="360" viewBox="-180 -180 360 360">__GEAR__</svg>
+  <svg id="lensC" class="abs" style="left:240px;top:150px;z-index:6;opacity:0" width="600" height="600" viewBox="-300 -300 600 600">__LENS__</svg>
+</div>
+
+<!-- D: wick trimming -->
+<div id="sD" class="sc" style="background:radial-gradient(ellipse at 50% 45%,#1B2E40,#060B14 70%)">
+  <div id="halo" class="abs" style="left:240px;top:280px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,210,120,.35),transparent 65%)"></div>
+  <svg class="abs" style="left:0;top:0" width="1080" height="1920">__LAMP__</svg>
+  <div id="flameD" class="abs" style="left:480px;top:400px;width:120px;height:260px;transform-origin:50% 100%;border-radius:50% 50% 45% 45%/62% 62% 38% 38%;background:radial-gradient(ellipse at 50% 72%,#FFFFFF 0%,#FFF2B0 22%,#FFB23A 52%,rgba(255,110,20,0) 74%)"></div>
+  <svg id="sciD" class="abs" style="left:560px;top:560px;z-index:5" width="420" height="300" viewBox="0 0 420 300">
+    <g id="bladeA"><path d="M30 150 L300 135 L300 165 Z" fill="#C9D6E2"/><circle cx="330" cy="110" r="46" fill="none" stroke="#3FE6F0" stroke-width="18"/></g>
+    <g id="bladeB"><path d="M30 150 L300 135 L300 165 Z" fill="#AEBDCB"/><circle cx="330" cy="190" r="46" fill="none" stroke="#12B5C8" stroke-width="18"/></g>
+    <circle cx="200" cy="150" r="10" fill="#0B1B2E"/></svg>
+  <canvas id="smokeD" class="abs" width="1080" height="1920" style="z-index:4"></canvas>
+  <div id="badgeD" class="abs" style="left:190px;right:190px;top:300px;z-index:7;opacity:0;text-align:center;padding:30px 20px;border:8px solid #3FE6F0;border-radius:28px;background:rgba(5,11,22,.85);font-size:120px;font-weight:900;letter-spacing:10px;color:#3FE6F0;transform:rotate(-6deg)">WICKIES</div>
+</div>
+
+<!-- E: sunset to sunrise -->
+<div id="sE" class="sc">
+  <div id="skyE" class="abs" style="inset:0"></div>
+  <canvas id="starsE" class="abs" width="1080" height="1920"></canvas>
+  <div id="sunE" class="abs" style="width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,#FFF4C8,#FFB54A 60%,#FF7A2A);box-shadow:0 0 120px 40px rgba(255,170,70,.45)"></div>
+  <div id="beamE" class="abs" style="left:-850px;top:-560px;width:2800px;height:2800px;border-radius:50%;z-index:2"></div>
+  <svg class="abs" style="left:0;top:0;z-index:3" width="1080" height="1920">__TOWER_E__</svg>
+  <div id="lampOffE" class="abs" style="left:683px;top:636px;width:154px;height:112px;background:#101A28;z-index:3;opacity:0"></div>
+  <svg id="shipE" class="abs" style="z-index:4" width="300" height="180" viewBox="0 0 300 180">__SHIP__</svg>
+  <canvas id="seaE" class="abs" width="1080" height="1920" style="z-index:5"></canvas>
+  <div id="warnE" class="abs" style="width:340px;height:340px;border-radius:50%;border:10px solid #FF4D5E;z-index:6;opacity:0"></div>
+  <div id="timeE" class="big" style="top:250px;font-size:150px;z-index:7"></div>
+</div>
+
+<!-- F: bridge: missed call, customer sails past -->
+<div id="sF" class="sc" style="background:linear-gradient(#071428,#0B2340 60%,#0E2C4C)">
+  <canvas id="seaF" class="abs" width="1080" height="1920" style="z-index:1"></canvas>
+  <svg id="shipF" class="abs" style="z-index:2" width="360" height="216" viewBox="0 0 300 180">__SHIP__</svg>
+  <div id="custF" class="abs" style="z-index:3;padding:14px 26px;border-radius:999px;background:#0E2236;border:3px solid #2A5A80;font-size:36px;font-weight:800;opacity:0">Customer</div>
+  <div id="phoneF" class="abs" style="left:270px;top:240px;width:540px;height:880px;border-radius:80px;background:#0A0F18;padding:18px;box-shadow:0 60px 120px rgba(0,0,0,.6),0 0 0 4px #1F3550;z-index:4">
+    <div style="position:relative;width:100%;height:100%;border-radius:64px;overflow:hidden;background:linear-gradient(#13243A,#0B1626)">
+      <div style="position:absolute;left:50%;top:18px;width:140px;height:38px;margin-left:-70px;border-radius:20px;background:#000"></div>
+      <div id="fState" class="abs" style="left:0;right:0;top:150px;text-align:center;font-size:34px;font-weight:700;color:#9FB6CC">Incoming call…</div>
+      <div class="abs" style="left:0;right:0;top:220px;text-align:center;font-size:62px;font-weight:900">+91 98290 •••••</div>
+      <div id="fAv" class="abs" style="left:170px;top:340px;width:160px;height:160px;border-radius:50%;background:#1F3550;display:flex;align-items:center;justify-content:center"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#CFE9F5" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
+      <div id="fMiss" class="abs" style="left:40px;right:40px;top:560px;padding:28px;border-radius:32px;background:rgba(255,77,94,.15);border:3px solid #FF4D5E;text-align:center;font-size:44px;font-weight:900;color:#FF6B78;opacity:0">Missed call</div>
+      <div class="abs" style="left:0;right:0;bottom:60px;display:flex;justify-content:center;gap:110px">
+        <span style="width:120px;height:120px;border-radius:50%;background:#FF4D5E;display:flex;align-items:center;justify-content:center">__PH_DOWN__</span>
+        <span id="fGreen" style="width:120px;height:120px;border-radius:50%;background:#22C55E;display:flex;align-items:center;justify-content:center">__PH__</span></div>
+    </div></div>
+  <div id="ringsF" class="abs" style="inset:0;z-index:3"></div>
+</div>
+
+<!-- G: Dynamo keeps the line on -->
+<div id="sG" class="sc" style="background:radial-gradient(ellipse at 50% 30%,#0E3550,#050B16 70%)">
+  <div id="beamG" class="abs" style="left:-1000px;top:-1100px;width:3080px;height:3080px;border-radius:50%;z-index:1"></div>
+  <div id="gLogo" class="abs" style="left:0;right:0;top:210px;display:flex;justify-content:center;z-index:3;filter:drop-shadow(0 0 50px rgba(18,216,208,.7))">__MARK_G__</div>
+  <div id="gCard" class="card" style="top:520px;z-index:4;opacity:0">
+    <div style="display:flex;align-items:center;gap:26px">
+      <span style="width:110px;height:110px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center" class="grad">__PH_DARK__</span>
+      <div><div style="font-size:32px;color:#9FB6CC;font-weight:700">Incoming call · 11:42 PM</div><div id="gAns" style="font-size:52px;font-weight:900;margin-top:6px">Ringing…</div></div>
+    </div>
+    <div id="gTime" style="margin-top:26px;font-size:30px;font-weight:700;color:#3FE6F0;opacity:0">Answered by Dynamo AI · first ring · 0:01</div>
+  </div>
+  <div id="g247" class="big" style="top:870px;font-size:210px;z-index:4;opacity:0"><span class="gtext">24×7</span></div>
+  <div class="abs" style="left:60px;right:60px;top:1130px;display:flex;justify-content:center;flex-wrap:wrap;gap:22px;z-index:4">
+    <span class="chip" id="c1" style="opacity:0">Hindi</span><span class="chip" id="c2" style="opacity:0">English</span><span class="chip" id="c3" style="opacity:0">Regional languages</span></div>
+</div>
+
+<!-- I: end -->
+<div id="sI" class="sc" style="background:radial-gradient(ellipse at 50% 35%,#0E3550,#050B16 70%)">
+  <div id="e1" class="abs" style="left:0;right:0;top:300px;display:flex;justify-content:center;filter:drop-shadow(0 0 60px rgba(18,216,208,.55))">__MARK__</div>
+  <div id="e2" class="abs" style="left:0;right:0;top:570px;display:flex;justify-content:center;align-items:center;gap:20px">__WORD__<span style="font-size:68px;font-weight:700;color:#9FB6CC;line-height:1">AI</span></div>
+  <div id="e3" class="abs" style="left:60px;right:60px;top:700px;text-align:center;font-size:62px;font-weight:800;line-height:1.15">Never let a call go dark.<br><span style="color:#9FB6CC;font-weight:600;font-size:46px">Your AI calling agent, 24×7.</span></div>
+  <div id="e4" class="abs" style="left:0;right:0;top:950px;text-align:center;font-weight:900;line-height:1"><span class="gtext" style="font-size:220px;letter-spacing:-8px">₹4</span><span style="font-size:76px;color:#CFE9F5"> / min</span></div>
+  <div id="e5" class="abs" style="left:0;right:0;top:1210px;display:flex;justify-content:center"><span class="grad" style="padding:36px 64px;border-radius:999px;font-size:54px;font-weight:900;color:#04263F">Try 10 minutes free</span></div>
+  <div id="e6" class="abs" style="left:0;right:0;top:1390px;text-align:center;font-size:56px;font-weight:800">dynamoasi.com/app</div>
+</div>
+</div>
+<div id="cap" class="abs"></div>
+<div id="vig"></div>
+<canvas id="grain" width="270" height="480"></canvas>
+<script>
+const TL=__TL__;const S=TL.S,K=TL.K;
+const $=id=>document.getElementById(id);
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const seg=(t,a,b)=>cl((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.8;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2);};
+const mix=(a,b,p)=>a.map((v,i)=>Math.round(v+(b[i]-v)*p));
+let sd=1;const rnd=()=>{sd=(sd*16807)%2147483647;return sd/2147483647;};
+const gctx=$('grain').getContext('2d');const gimg=gctx.createImageData(270,480);
+function grain(f){sd=f*7919+3;for(let i=0;i<gimg.data.length;i+=4){const v=rnd()*255;gimg.data[i]=gimg.data[i+1]=gimg.data[i+2]=v;gimg.data[i+3]=255;}gctx.putImageData(gimg,0,0);}
+function stars(id,n,h){const c=$(id).getContext('2d');sd=5;for(let i=0;i<n;i++){c.fillStyle=`rgba(255,255,255,${.2+rnd()*.7})`;c.beginPath();c.arc(rnd()*1080,rnd()*h,rnd()*2.2,0,6.283);c.fill();}}
+stars('starsA',260,1200);stars('starsE',220,1100);
+function sea(id,t,y0,amp,col){const c=$(id).getContext('2d');c.clearRect(0,0,1080,1920);
+  for(let L=0;L<4;L++){const y=y0+L*70;c.fillStyle=col[L];c.beginPath();c.moveTo(0,1920);
+    for(let x=0;x<=1080;x+=12)c.lineTo(x,y+Math.sin(x*0.012+t*(1.2+L*0.4)+L)*amp*(1+L*0.3)+Math.sin(x*0.03-t*2+L*2)*amp*0.35);
+    c.lineTo(1080,1920);c.fill();}}
+const SEA=['#0B2440','#0A1F38','#08192E','#061325'];
+function beam(id,ang,col,alpha){$(id).style.background=`conic-gradient(from ${ang}deg at 50% 50%, rgba(${col},${alpha}) 0deg, rgba(${col},0) 16deg, transparent 164deg, rgba(${col},0) 180deg, rgba(${col},${alpha}) 196deg, transparent 197deg, transparent 344deg, rgba(${col},${alpha*0.0}) 344deg)`;
+  $(id).style.maskImage='radial-gradient(circle, #000 0%, #000 30%, transparent 70%)';$(id).style.webkitMaskImage='radial-gradient(circle, #000 0%, #000 30%, transparent 70%)';}
+function vis(id,on,t,a,b){const e=$(id);e.style.display=on?'block':'none';if(on){const i=seg(t,a,a+0.22),o=seg(t,b-0.18,b);e.style.transform=`translateX(${(1-eo(i))*380-eo(o)*380}px)`;e.style.filter=`blur(${(1-i)*14+o*14}px)`;}}
+const wB=$('windB').getContext('2d'),smD=$('smokeD').getContext('2d');
+window.render=function(t,f){
+  grain(f||Math.round(t*30));
+  const inA=t<S.B,inB=t>=S.B&&t<S.C,inC=t>=S.C&&t<S.D,inD=t>=S.D&&t<S.E,inE=t>=S.E&&t<S.F,inF=t>=S.F&&t<S.G,inG=t>=S.G&&t<S.I,inI=t>=S.I;
+  vis('sA',inA,t,0,S.B);vis('sB',inB,t,S.B,S.C);vis('sC',inC,t,S.C,S.D);vis('sD',inD,t,S.D,S.E);vis('sE',inE,t,S.E,S.F);vis('sF',inF,t,S.F,S.G);vis('sG',inG,t,S.G,S.I);vis('sI',inI,t,S.I,999);
+  if(inA){const fl=t>=K.house?1+0.6*Math.exp(-(t-K.house)*3):1;beam('beamA',t*55,'255,236,170',0.42*fl);
+    sea('seaA',t,1330,16,SEA);$('sA').style.transform+=` scale(${1+0.04*t/5})`;}
+  if(inB){const fade=seg(t,K.never,K.out-0.15), save=seg(t,K.out-0.15,K.out+0.25);
+    const dip=fade*(1-save);const fl=(0.92+0.08*Math.sin(t*23)*Math.sin(t*7))*(1-0.75*dip)*(1+0.25*Math.exp(-Math.max(0,t-K.out)*4)*(t>K.out?1:0));
+    $('flameB').style.transform=`scale(${fl},${fl*(1+0.05*Math.sin(t*17))}) skewX(${Math.sin(t*9)*4*(1+dip*3)}deg)`;
+    $('glowB').style.background=`radial-gradient(circle,rgba(255,214,120,${0.55*fl}),transparent 62%)`;
+    $('keeperB').style.transform=`translateY(${Math.sin(t*1.6)*4}px)`;
+    wB.clearRect(0,0,1080,1920);wB.strokeStyle=`rgba(200,225,255,${0.25*dip+0.05})`;wB.lineWidth=4;sd=11;
+    for(let i=0;i<14;i++){const y=200+rnd()*1100,sp=900+rnd()*600,L=120+rnd()*200;const x=((t*sp+rnd()*1400)%1500)-300;wB.beginPath();wB.moveTo(x,y);wB.quadraticCurveTo(x+L/2,y-14,x+L,y);wB.stroke();}}
+  if(inC){const z=seg(t,S.C,K.clock-0.2);const pth=[[540,1700],[700,1560],[380,1420],[700,1280],[400,1140],[680,1000],[430,860],[640,720],[540,600]];
+    const p=eio(z)*(pth.length-1);const i=Math.min(pth.length-2,Math.floor(p)),fr=p-i;const x=pth[i][0]+(pth[i+1][0]-pth[i][0])*fr,y=pth[i][1]+(pth[i+1][1]-pth[i][1])*fr;
+    $('dotC').style.left=(x-22)+'px';$('dotC').style.top=(y-22+Math.sin(t*12)*4)+'px';
+    const ck=seg(t,S.C+0.2,S.C+0.6);$('clockC').style.opacity=ck;$('clockC').style.transform=`scale(${ck>0?back(ck):0})`;
+    const hrs=22+4*seg(t,S.C+0.4,S.D-0.6);const hh=Math.floor(hrs)%24;$('tC').textContent=((hh%12)||12)+(hh>=12&&hh<24?' PM':' AM');
+    $('hrC').style.transform=`rotate(${hrs*30}deg)`;$('mnC').style.transform=`rotate(${hrs*360}deg)`;
+    const g=seg(t,K.clock-0.15,K.clock+0.25);$('gearC').style.opacity=g;$('gearC').style.transform=`scale(${g>0?0.6+0.4*back(g):0.6}) rotate(${t*90}deg)`;
+    const ln=seg(t,K.turn-0.6,K.turn-0.1);$('lensC').style.opacity=ln;$('lensC').style.transform=`scale(${0.5+0.5*eo(ln)}) rotate(${t*50}deg)`;}
+  if(inD){const snip=K.wicks;const sc=seg(t,snip-0.35,snip),op=seg(t,snip,snip+0.25);const ang=14*(1-sc)+14*op;
+    $('bladeA').setAttribute('transform',`rotate(${-ang} 200 150)`);$('bladeB').setAttribute('transform',`rotate(${ang} 200 150)`);
+    $('sciD').style.transform=`translate(${(1-eo(seg(t,S.D,snip-0.4)))*500}px,${-90*seg(t,snip-0.4,snip)}px)`;
+    const fl=0.9+0.1*Math.sin(t*21)*Math.sin(t*5)+0.3*Math.exp(-Math.max(0,t-snip)*5)*(t>snip?1:0);
+    $('flameD').style.transform=`scale(${fl}) skewX(${Math.sin(t*8)*3}deg)`;
+    smD.clearRect(0,0,1080,1920);if(t>snip){sd=21;for(let i=0;i<26;i++){const age=(t-snip)*1.2+rnd()*0.4;const a=Math.max(0,0.5-age*0.25);smD.fillStyle=`rgba(190,205,220,${a})`;smD.beginPath();smD.arc(540+Math.sin(i+age*3)*40*age,560-age*260-rnd()*40,10+age*30,0,6.283);smD.fill();}}
+    const b=seg(t,K.wickies-0.1,K.wickies+0.2);$('badgeD').style.opacity=b;$('badgeD').style.transform=`rotate(-6deg) scale(${b>0?2.2-1.2*eo(b):2.2})`;}
+  if(inE){const L=S.F-S.E;const p=seg(t,S.E,S.F);
+    const ss=seg(t,K.sunset-0.2,K.sunset+1.0), sr=0;
+    const day=[255,140,90],night=[6,14,32],dawn=[255,190,140];
+    const top=sr>0?mix(mix([20,30,70],night,1),[90,140,200],sr):mix([110,70,140],night,ss);const bot=sr>0?mix(night,dawn,sr):mix(day,[12,30,60],ss);
+    $('skyE').style.background=`linear-gradient(rgb(${top}),rgb(${bot}) 70%)`;
+    $('starsE').style.opacity=ss*(1-sr);
+    const sx=sr>0?120+300*sr:700+200*ss, sy=sr>0?1300-450*eo(sr):760+760*eio(ss);$('sunE').style.left=(sx-110)+'px';$('sunE').style.top=(sy-110)+'px';
+    const dk=seg(t,K.dark-0.1,K.dark+0.15)*(1-seg(t,K.ship+0.3,K.ship+0.6));
+    beam('beamE',t*55,'255,236,170',0.45*ss*(1-sr*0.7)*(1-0.95*dk));
+    const shx=-300+680*eio(seg(t,S.E+0.6,K.ship))+120*seg(t,K.ship,S.F);$('lampOffE').style.opacity=dk;$('shipE').style.left=shx+'px';$('shipE').style.top=(1190+Math.sin(t*2)*6)+'px';
+    const w=seg(t,K.ship-0.15,K.ship+0.1)*(1-seg(t,S.F-0.4,S.F));$('warnE').style.opacity=w*dk>0?w:0;$('warnE').style.left=(shx-20)+'px';$('warnE').style.top=(1080)+'px';$('warnE').style.transform=`scale(${0.8+0.25*Math.sin(t*10)})`;
+    $('timeE').textContent=sr>0.3?'6:12 AM':(ss>0.6?(t>K.dark-0.3?'2:40 AM':'11:30 PM'):'6:47 PM');$('timeE').style.opacity=0.85;
+    sea('seaE',t,1330,14,SEA);}
+  if(inF){sea('seaF',t,1290,14,SEA);const ring=t<K.rings;const vib=ring?Math.sin(t*70)*8*(Math.sin(t*5)>0?1:0):0;
+    $('phoneF').style.transform=`translateX(${vib}px) rotate(${vib*0.15}deg)`;
+    const m=seg(t,K.rings,K.rings+0.25);$('fMiss').style.opacity=m;$('fMiss').style.transform=`scale(${m>0?back(m):0.8})`;$('fState').textContent=m>0.5?'No answer':'Incoming call…';$('fState').style.color=m>0.5?'#FF6B78':'#9FB6CC';
+    $('fGreen').style.opacity=1-0.7*m;
+    let r='';if(ring){for(let k=0;k<3;k++){const q=((t-S.F)*0.9+k/3)%1;r+=`<div class="abs" style="left:${540-300-q*300}px;top:${680-300-q*300}px;width:${600+q*600}px;height:${600+q*600}px;border-radius:50%;border:5px solid rgba(63,230,240,${(1-q)*0.4})"></div>`;}}$('ringsF').innerHTML=r;
+    const sl=seg(t,K.sail-0.8,S.G);const sx=380+900*eio(sl);$('shipF').style.left=sx+'px';$('shipF').style.top=(1170+Math.sin(t*2)*6)+'px';
+    $('custF').style.opacity=seg(t,K.ships,K.ships+0.3);$('custF').style.left=(sx+60)+'px';$('custF').style.top='1110px';}
+  if(inG){beam('beamG',t*55,'18,216,208',0.38);
+    const lg=seg(t,S.G,S.G+0.45);$('gLogo').style.opacity=lg;$('gLogo').style.transform=`scale(${lg>0?0.6+0.4*back(lg):0.6})`;
+    const c=seg(t,K.dyn+0.2,K.dyn+0.6);$('gCard').style.opacity=c;$('gCard').style.transform=`translateY(${(1-eo(c))*80}px)`;
+    const a=t>=K.first;$('gAns').textContent=a?'Answered':'Ringing…';$('gAns').style.color=a?'#3FE6F0':'#fff';$('gTime').style.opacity=seg(t,K.first,K.first+0.3);
+    const h=seg(t,K['247']-0.1,K['247']+0.25);$('g247').style.opacity=h;$('g247').style.transform=`scale(${h>0?back(h):0})`;
+    [['c1','hindi'],['c2','eng'],['c3','reg']].forEach(([id,k])=>{const q=seg(t,K[k]-0.1,K[k]+0.2);$(id).style.opacity=q;$(id).style.transform=`scale(${q>0?back(q):0})`;});}
+  if(inI){const st=(id,a)=>{const p=eo(seg(t,a,a+0.4));$(id).style.opacity=p;$(id).style.transform=`translateY(${(1-p)*36}px)`;};
+    const m=seg(t,S.I,S.I+0.5);$('e1').style.opacity=m;$('e1').style.transform=`scale(${0.6+0.4*back(m)})`;
+    st('e2',S.I+0.25);st('e3',S.I+0.5);st('e4',S.I+0.9);st('e5',S.I+1.3);st('e6',S.I+1.7);
+    if(t>S.I+2.2)$('e5').firstElementChild.style.transform=`scale(${1+0.03*Math.sin((t-S.I-2.2)*6)})`;}
+  let pz=0;TL.punch.forEach(p=>{if(t>=p&&t<p+0.35)pz=Math.max(pz,Math.exp(-(t-p)*10));});
+  $('stage').style.transform=`translate(${pz*Math.sin(t*90)*6}px,${pz*Math.cos(t*80)*5}px) scale(${1+0.06*pz})`;
+  const c=TL.caps.find(x=>t>=x[1]&&t<x[2]);const cap=$('cap');
+  if(c&&!inI){if(cap.dataset.k!=c[0]+c[1]){cap.innerHTML=c[0];cap.dataset.k=c[0]+c[1];}const p=seg(t,c[1],c[1]+0.12);cap.style.opacity=1;cap.style.transform=`scale(${0.7+0.3*back(p)}) rotate(${(1-p)*-3}deg)`;}else{cap.style.opacity=0;cap.dataset.k='';}
+};
+render(0,0);
+</script></body></html>

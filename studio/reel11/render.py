@@ -1,0 +1,20 @@
+import asyncio, subprocess, os
+from playwright.async_api import async_playwright
+FPS=30
+SCENES=[(0,113),(113,288),(288,380),(380,489),(489,588),(588,764),(764,1004),(1004,1133)]
+async def main():
+    async with async_playwright() as p:
+        b=await p.chromium.launch(); pg=await b.new_page(viewport={"width":1080,"height":1920})
+        await pg.goto("file:///home/claude/reel11/reel_built.html"); await pg.wait_for_timeout(1000)
+        for k,(a,z) in enumerate(SCENES):
+            if os.path.exists(f"scene{k}.mp4"): continue
+            tmp=f"scene{k}.tmp.mp4"
+            ff=subprocess.Popen(["ffmpeg","-y","-loglevel","error","-f","image2pipe","-framerate",str(FPS),"-c:v","mjpeg","-i","-",
+                "-c:v","libx264","-preset","veryfast","-crf","18","-pix_fmt","yuv420p","-r",str(FPS),tmp],stdin=subprocess.PIPE)
+            for f in range(a,z):
+                await pg.evaluate(f"render({f/FPS},{f})")
+                ff.stdin.write(await pg.screenshot(type="jpeg",quality=92))
+            ff.stdin.close()
+            if ff.wait()==0: os.replace(tmp,f"scene{k}.mp4"); print("scene",k,"ok",flush=True)
+        await b.close()
+asyncio.run(main())
