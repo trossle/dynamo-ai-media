@@ -6,7 +6,7 @@ sends it to Arnav for approval, and only after he replies "approve" uploads and 
 
 ## What one batch contains (2 days)
 Per day, India time (Asia/Kolkata, +05:30):
-- 1:00 PM  feed post (1080x1350 JPEG) + 1:05 PM the same post as a 9:16 story (link sticker https://www.dynamoasi.com/app)
+- 1:00 PM  feed post (1080x1350 JPEG) + 1:30 PM the same post as a 9:16 story. Arnav chose: the story's link sticker opens the post itself (see step 3b)
 - 7:00 PM  **story reel** (Zack D Films style explainer, 30-45 s, narrated) on Instagram **and** as a YouTube Short
 - 9:00 PM  **regular reel** (10-15 s animated motion graphic with music, no narration), Instagram only
 That is 8 Buffer items per batch (Buffer free plan allows 10 scheduled at once). YouTube gets story reels only.
@@ -64,7 +64,12 @@ glow background: `python3 /home/claude/batch1/story_image.py post.jpg post-story
    (`git -c push.negotiate=true push`). Public file URL: https://raw.githubusercontent.com/trossle/dynamo-ai-media/main/<path>
 3. Buffer: organization 6ae5de4e3f9092c1fed1b798, Instagram channel 6af3861762b70b94b0e8dcec. create_post with
    mode customScheduled, dueAt "YYYY-MM-DDTHH:MM:00+05:30", schedulingType automatic,
-   metadata.instagram.type post / story (shouldShareToFeed false, link https://www.dynamoasi.com/app) / reel (shouldShareToFeed true).
+   metadata.instagram.type post / story (shouldShareToFeed false, link https://www.dynamoasi.com/app as a placeholder) / reel (shouldShareToFeed true).
+3b. Story link = the post itself. The post's URL only exists once it is live, so for each day create a send_later
+   (mcp__claude-code-remote__send_later) at 1:08 PM IST that: Buffer get_post <post id>; take its Instagram permalink
+   (or Windsor instagram get_data, account 17841415192652684, latest post permalink); then Buffer edit_post <story id>
+   with metadata.instagram {type story, shouldShareToFeed false, link <permalink>} and no mode/dueAt.
+   If the post failed, leave the dynamoasi.com/app link and tell Arnav.
 4. YouTube Shorts (story reels only): Windsor.ai connector youtube, account 121122, action upload_video,
    privacy_status private + publish_at at 7 PM IST, made_for_kids false, title ends with #shorts.
    If YouTube says rate-limited, wait and retry once; if it still fails, tell Arnav.
