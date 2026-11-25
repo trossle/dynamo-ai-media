@@ -74,3 +74,8 @@ glow background: `python3 /home/claude/batch1/story_image.py post.jpg post-story
    privacy_status private + publish_at at 7 PM IST, made_for_kids false, title ends with #shorts.
    If YouTube says rate-limited, wait and retry once; if it still fails, tell Arnav.
 5. Append the batch to studio/CONTENT-LOG.md and push.
+
+## YouTube notes (25 Nov 2026)
+- Channel has Standard + Intermediate features; Advanced is pending (needs video verification), so links in
+  descriptions are not clickable: write "dynamoasi.com/app" as plain text.
+- upload_video can return "rate-limited" for hours, then work. Retry a few hours later; don't loop.
