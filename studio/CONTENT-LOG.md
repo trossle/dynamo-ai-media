@@ -22,3 +22,8 @@ check the live grid (Windsor instagram connector, get_data on media) before reus
 ## Teal posts scheduled
 - 25 Nov 2026, 1 PM: "Your callers talk. Dynamo AI acts." (+ story)
 - 26 Nov 2026, 1 PM: "A day in the life of your AI receptionist." (+ story)
+
+## PENDING (made 26 Nov 2026, 00:55 IST in chat, waiting for Arnav to approve)
+- 27 Nov: post "₹8,000 = 2,000 min + 200 free"; story reel Strowger (undertaker, automatic exchange); reel "How many rings" (Ring 1)
+- 28 Nov: post "4 myths about AI receptionists"; story reel fire pole (Engine Co. 21); reel "Sunday"
+- The scheduled run must NOT make another batch for 27-28 Nov.
